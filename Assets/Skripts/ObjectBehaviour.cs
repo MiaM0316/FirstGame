@@ -5,10 +5,11 @@ using UnityEngine;
 public class ObjectBehaviour : MonoBehaviour
 {
     [SerializeField] GameObject prefab;
-    bool _gameOver = false;
+    public bool _gameOver = false;
 
     public void SpawnObject()
     {
+
         Instantiate(prefab, new Vector3(Random.Range(-8f, 8f), 6f, 0f), Quaternion.identity);
     }
 
@@ -18,11 +19,18 @@ public class ObjectBehaviour : MonoBehaviour
         {
             SpawnObject();
             Destroy(gameObject);
+            ScoreManager._scoreCount += 1;
         }
-        else if(collision.gameObject.tag == "Ground")
+        else if (collision.gameObject.tag == "Ground")
         {
             _gameOver = true;
-            Debug.Log("GAME OVER");
+            ScenesManager.Instance.LoadGameOver();
+            SetScore();
         }
+    }
+
+    public void SetScore()
+    {
+        ScoreManager._finalScore = ScoreManager._scoreCount;
     }
 }
