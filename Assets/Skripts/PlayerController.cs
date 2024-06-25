@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     float _playerSpeed = 13f;
     float _inputHorizontal;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,7 @@ public class PlayerController : MonoBehaviour
     {
         _inputHorizontal = Input.GetAxisRaw("Horizontal");
 
-        if (_inputHorizontal != 0)
+        if (_inputHorizontal != 0 && !TimeManager.Instance._paused)
         {
             _rb.AddForce(new Vector2(_inputHorizontal * _playerSpeed, 0f));
         }
