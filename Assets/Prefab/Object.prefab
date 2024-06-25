@@ -173,3 +173,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 7675137988602097064}
   _gameOver: 0
+  _reset: 0
